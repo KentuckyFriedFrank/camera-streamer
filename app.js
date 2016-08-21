@@ -1,5 +1,5 @@
 
-if( process.argv.length < 3 ) {
+if( process.argv.length < 2 ) {
 	console.log(
 		'Usage: \n' +
 		'node stream-server.js <secret> [<stream-port> <websocket-port>]'
