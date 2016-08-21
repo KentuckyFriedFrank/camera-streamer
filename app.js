@@ -36,6 +36,7 @@ socketServer.on('connection', function(socket) {
 socketServer.broadcast = function(data, opts) {
 	for( var i in this.clients ) {
 		if (this.clients[i].readyState == 1) {
+            child = exec("avconv -s 640x480 -r 10 -f video4linux2 -i /dev/video0 -f mpeg1video -b 300k -r 30 http://127.0.0.1:8082/test1234/640/480/");
 			this.clients[i].send(data, opts);
 		}
 		else {
@@ -75,7 +76,6 @@ var sys = require('sys')
 var exec = require('child_process').exec;
 var child;
 
-child = exec("avconv -s 640x480 -r 10 -f video4linux2 -i /dev/video0 -f mpeg1video -b 300k -r 30 http://127.0.0.1:8082/test1234/640/480/");
 
 // create an express app
 var express = require('express'),
