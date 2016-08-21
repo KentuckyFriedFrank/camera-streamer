@@ -74,8 +74,9 @@ var streamServer = require('http').createServer( function(request, response) {
 var sys = require('sys')
 var exec = require('child_process').exec;
 var child;
-// executes `pkill` - make sure socketserver isnt already running
-child = exec("pkill -f avconv -s 640x480 -f video4linux2 -i /dev/video0 -f mpeg1video -b 800k -r 30 http://127.0.0.1:8082/test1234/640/480/");
+
+//start webcam stream
+child = exec("avconv -s 640x480 -f video4linux2 -i /dev/video0 -f mpeg1video -b 800k -r 30 http://127.0.0.1:8082/test1234/640/480/");
 
 // create an express app
 var express = require('express'),
