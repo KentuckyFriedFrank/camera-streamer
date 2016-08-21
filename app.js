@@ -29,7 +29,7 @@ socketServer.on('connection', function(socket) {
 	console.log( 'New WebSocket Connection ('+socketServer.clients.length+' total)' );
 	
 	socket.on('close', function(code, message){
-        child = exec("kilall avconv");
+        child = exec("pkill -f avconv");
 		console.log( 'Disconnected WebSocket ('+socketServer.clients.length+' total)' );
 	});
 });
