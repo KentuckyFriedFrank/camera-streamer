@@ -70,6 +70,13 @@ var streamServer = require('http').createServer( function(request, response) {
 	}
 }).listen(STREAM_PORT);
 
+//http://nodejs.org/api.html#_child_processes
+var sys = require('sys')
+var exec = require('child_process').exec;
+var child;
+// executes `pkill` - make sure socketserver isnt already running
+child = exec("pkill -f avconv -s 640x480 -f video4linux2 -i /dev/video0 -f mpeg1video -b 800k -r 30 http://127.0.0.1:8082/test1234/640/480/");
+
 // create an express app
 var express = require('express'),
     app = express()
@@ -91,12 +98,7 @@ app.use(bodyParser.json());
 // path doesn't match the static directory
 app.use(express.static(publicDir));
 
-//http://nodejs.org/api.html#_child_processes
-var sys = require('sys')
-var exec = require('child_process').exec;
-var child;
-// executes `pkill` - make sure socketserver isnt already running
-child = exec("pkill -f avconv -s 640x480 -f video4linux2 -i /dev/video0 -f mpeg1video -b 800k -r 30 http://127.0.0.1:8082/test1234/640/480/");
+
 
 console.log('Listening for MPEG Stream on http://127.0.0.1:'+STREAM_PORT+'/<secret>/<width>/<height>');
 console.log('Awaiting WebSocket connections on ws://127.0.0.1:'+WEBSOCKET_PORT+'/');
