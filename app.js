@@ -102,3 +102,6 @@ app.use(express.static(publicDir));
 
 console.log('Listening for MPEG Stream on http://127.0.0.1:'+STREAM_PORT+'/<secret>/<width>/<height>');
 console.log('Awaiting WebSocket connections on ws://127.0.0.1:'+WEBSOCKET_PORT+'/');
+
+http.listen(port);
+console.log('server web server started on port %s', port);
