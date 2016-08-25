@@ -25,7 +25,7 @@ socketServer.on('connection', function(socket) {
 	streamHeader.writeUInt16BE(width, 4);
 	streamHeader.writeUInt16BE(height, 6);
 	socket.send(streamHeader, {binary:true});
-    child = exec("avconv -s 320x240 -r 10 -f video4linux2 -i /dev/video0 -f mpeg1video -b 300k -r 30 http://127.0.0.1:8082/test1234/320/240/");
+    child = exec("avconv -s 320x240 -r 10 -f video4linux2 -i /dev/video0 -vf hflip -f mpeg1video -b 300k -r 30 http://127.0.0.1:8082/test1234/320/240/");
 	console.log( 'New WebSocket Connection ('+socketServer.clients.length+' total)' );
 	
 	socket.on('close', function(code, message){
