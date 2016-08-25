@@ -12,10 +12,12 @@
 		#videoCanvas {
 			/* Always stretch the canvas to 640x480, regardless of its
 			internal size. */
-   
+            position: fixed;
+            top: 0;
+            left:0;
             float: top;
-			width: 1800;
-			height: 1200;
+			width: 1800px;
+			height: 1200px;
             margin: 0;
             padding: 0;
 		}
@@ -26,7 +28,7 @@
 		change this internal resolution to whatever the source provides. The size the
 		canvas is displayed on the website is dictated by the CSS style.
 	-->
-	<canvas id="videoCanvas" width="1800" height="1200">
+	<canvas id="videoCanvas" >
 
 	</canvas>
 	<script type="text/javascript" src="jsmpg.js"></script>
