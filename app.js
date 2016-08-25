@@ -12,8 +12,8 @@ var STREAM_SECRET = "test1234",
 	WEBSOCKET_PORT = process.argv[4] || 8084,
 	STREAM_MAGIC_BYTES = 'jsmp'; // Must be 4 bytes
 
-var width = 1280,
-	height = 720;
+var width = 640,
+	height = 480;
 
 // Websocket Server
 var socketServer = new (require('ws').Server)({port: WEBSOCKET_PORT});
@@ -25,7 +25,7 @@ socketServer.on('connection', function(socket) {
 	streamHeader.writeUInt16BE(width, 4);
 	streamHeader.writeUInt16BE(height, 6);
 	socket.send(streamHeader, {binary:true});
-    child = exec("avconv -s 1280x720 -r 10 -f video4linux2 -i /dev/video0 -vf hflip -f mpeg1video -b 300k -r 30 http://127.0.0.1:8082/test1234/1280/720/");
+    child = exec("avconv -s " + width + "x" + height + " -r 10 -f video4linux2 -i /dev/video0 -vf hflip -f mpeg1video -b 300k -r 30 http://127.0.0.1:8082/test1234/1280/720/");
 	console.log( 'New WebSocket Connection ('+socketServer.clients.length+' total)' );
 	
 	socket.on('close', function(code, message){
