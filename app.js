@@ -12,8 +12,8 @@ var STREAM_SECRET = "test1234",
 	WEBSOCKET_PORT = process.argv[4] || 8084,
 	STREAM_MAGIC_BYTES = 'jsmp'; // Must be 4 bytes
 
-var width = 640,
-	height = 480;
+var width = 320,
+	height = 240;
 
 // Websocket Server
 var socketServer = new (require('ws').Server)({port: WEBSOCKET_PORT});
